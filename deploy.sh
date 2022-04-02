@@ -1,12 +1,17 @@
 docker pull mysql
 docker run -d -p 33006:3306 -e MYSQL_ROOT_PASSWORD=eyesdnslog2022 --name=mysql mysql
+apt install python3.8
 
 curl https://pyenv.run | bash
 echo -e '''export PATH="/root/.pyenv/bin:$PATH"\neval "$(pyenv init -)"\neval "$(pyenv virtualenv-init -)"''' >>/root/.bashrc
 source /root/.bashrc
 pyenv install 3.8.2
 pyenv virtualenv 3.8.2 dnslog
-~/.pyenv/versions/dnslog/bin/pip3  install -r ./requirements.txt
+~/.pyenv/versions/dnslog/bin/pip3  
+
+
+
+
 ~/.pyenv/versions/dnslog/bin/python manage.py makemigrations logview
 ~/.pyenv/versions/dnslog/bin/python manage.py migrate
 ~/.pyenv/versions/dnslog/bin/python manage.py collectstatic
