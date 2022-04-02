@@ -1,18 +1,5 @@
-#!/usr/bin/env bash
-
-sudo yum -y install python-devel mysql-devel libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel libpcap-devel xz-devel git gcc
-yum install -y mariadb mariadb-server
-yum install -y bind-utils psmisc
-rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-yum install -y nginx
-systemctl start mariadb
-systemctl enable mariadb
-mysql_secure_installation
-
-#
-# [mysqld]
-# character-set-server=utf8
-#
+docker pull mysql
+docker run -d -p 33006:3306 -e MYSQL_ROOT_PASSWORD=eyesdnslog2022 --name=mysql mysql
 
 curl https://pyenv.run | bash
 echo -e '''export PATH="/root/.pyenv/bin:$PATH"\neval "$(pyenv init -)"\neval "$(pyenv virtualenv-init -)"''' >>/root/.bashrc
